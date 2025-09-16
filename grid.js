@@ -10,3 +10,11 @@ for (let i = 0; i < 16; i++) {
     }
     grid.appendChild(rowGrid);
 }
+
+const allSquares = document.querySelectorAll(".square");
+allSquares.forEach(square => {
+    square.addEventListener("mouseover", () => {
+        square.style.backgroundColor = "black";
+        square.style.borderColor = "black";
+    });
+});
