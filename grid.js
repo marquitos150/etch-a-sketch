@@ -1,6 +1,12 @@
 const resize = document.querySelector(".resize");
+const random = document.querySelector(".random");
+const black = document.querySelector(".black");
+const gradual = document.querySelector(".gradual");
 const grid = document.querySelector(".grid");
 const clearBtn = document.querySelector(".clear");
+
+let randomOn = false;
+let opacityOn = false;
 
 function createGrid(d = 16) {
     grid.innerHTML = "";
@@ -29,9 +35,26 @@ resize.addEventListener("click", () => {
     createGrid(d);
 });
 
+random.addEventListener("click", () => {
+    randomOn = true;
+});
+
+black.addEventListener("click", () => {
+    randomOn = false;
+});
+
+gradual.addEventListener("click", () => {
+    opacityOn = opacityOn ? false : true;
+});
+
 grid.addEventListener("mouseover", (e) => {
     if (e.target.classList[0] == "square") {
-        e.target.style.backgroundColor = "black";
-        e.target.style.borderColor = "black";
+        let r = Math.floor(Math.random() * 256);
+        let g = Math.floor(Math.random() * 256);
+        let b = Math.floor(Math.random() * 256);
+        if (e.target.style.backgroundColor === "") {
+            e.target.style.backgroundColor = randomOn ? `rgb(${r}, ${g}, ${b})` : "black";
+            e.target.style.borderColor = randomOn ? `rgb(${r}, ${g}, ${b})` : "black";
+        }
     }
 });
